@@ -1,0 +1,4 @@
+- Hiện tại đã xử lý được 3 file movies.csv, links.csv, ratings.csv
+- Code xử lý nằm trong thư mục 'source'. Khi thực thi code nhớ chú ý cài đặt các thư viện pandas và chú ý các đường dẫn lúc đọc là ghi dữ liệu.
+- Thông tin về cách xử lý từng file csv như thế nào đều ghi rõ trong từng file code.
+- Thư mục 'result' chứa các file csv đã được xử lý.
