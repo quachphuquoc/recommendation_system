@@ -25,42 +25,12 @@ import ast
 #
 # # mảng chứa index của những dòng mà có giá trị tại cột 'crew' là '[]'
 # credits_crew_none = []
-
-# for i in range(df_temp.shape[0]):
-#     # Xu ly cot cast
-#     credits_str = str(df_temp['cast'][i])
-#     credits_cast = ast.literal_eval(credits_str)
 #
-#
-#     if len(credits_cast) == 0:
-#         credits_cast_none.append(i)
-#     else:
-#         result = '|'.join(map(converter,credits_cast))
-#         df_temp['cast'][i] = result
-#
-#
-#     # Xu ly cot crew
-#     credits_str2 = str(df_temp['crew'][i])
-#     credits_crew = ast.literal_eval(credits_str2)
-#
-#     if len(credits_crew) == 0:
-#         credits_crew_none.append(i)
-#     else:
-#         result = '|'.join(map(converter,credits_cast))
-#         df_temp['cast'][i] = result
-#
-#
-# # Xóa dòng có giá trị tại cột 'cast' là '[]'
-# df_temp = df_temp.drop(credits_cast_none)
-#
-# print('df_temp shape: '+str(df_temp.shape))
-# # Ghi dữ liệu vào csv
-# df_temp.to_csv('./processed-csv/credits_temp2.csv',index=False,header=True)
-#
-# Khong co dong nay thi code phia duoi bi loi o index thu 28???? (cu the lenh: df_temp['credits'][28])
-# df_temp2 = pd.read_csv('./processed-csv/credits.csv')
+# #
 #
 # #Xu ly cot crew
+# df_temp2 = pd.read_csv('./processed-csv/credits.csv')
+#
 # for i in range(df_temp2.shape[0]):
 #     # Xu ly cot crew
 #     credits_str2 = str(df_temp2['crew'][i])
@@ -75,7 +45,7 @@ import ast
 #
 #
 #
-# print('count none credits: '+str(len(credits_cast_none)))
+# print('count none credits: '+str(len(credits_crew_none)))
 #
 #
 # # Xóa dòng có giá trị tại cột 'crew' là '[]'
@@ -84,6 +54,8 @@ import ast
 # print('df_temp shape: '+str(df_temp2.shape))
 # # Ghi dữ liệu vào csv
 # df_temp2.to_csv('./processed-csv/credits_temp2.csv',index=False,header=True)
+#
+
 
 # Xóa các trường index của file credits không có trong file movie.
 # Load dữ liệu
@@ -117,4 +89,4 @@ print('df temp:', df_temp.shape)
 print('credits df:', credits_df.shape)
 
 
-# Kết quả credits giảm 361 thuộc tính so với file movie
+# Kết quả credits giảm 1480 thuộc tính so với file movie
