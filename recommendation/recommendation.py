@@ -1,4 +1,4 @@
-
+#!pip install git+https://github.com/quachphuquoc/QPQ.git
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -10,8 +10,8 @@ from sklearn.metrics.pairwise import linear_kernel, cosine_similarity
 from nltk.stem.snowball import SnowballStemmer
 from nltk.stem.wordnet import WordNetLemmatizer
 from nltk.corpus import wordnet
-from surprise import Reader, Dataset, SVD
-from surprise.model_selection import cross_validate
+from QPQ import Reader, Dataset, SVD
+from QPQ.model_selection import cross_validate
 
 
 import warnings; warnings.simplefilter('ignore')
