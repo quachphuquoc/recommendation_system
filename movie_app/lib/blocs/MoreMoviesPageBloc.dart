@@ -1,14 +1,25 @@
-import 'package:movie_app/models/Movie.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:movie_app/models/Movie.dart';
 import 'package:movie_app/repositories/MovieApiClient.dart';
 import 'package:movie_app/ui/screens/MovieDetailPage.dart';
-import 'package:movie_app/ui/screens/MoreMoviesPage.dart';
 
-class HomePageBloc {
-  void buttonMoreTap(BuildContext context, String title, List<int> movies){
-    Navigator.push(context, MaterialPageRoute(builder: (context) => MoreMoviesPage(title, movies)));
+class MoreMoviesPageBloc {
+  StreamController _pageController = new StreamController();
+  int _currentPage = 0;
+  bool _isStart = true;
+
+  bool get isStart => _isStart;
+
+  MoreMoviesPageBloc(){
+    _pageController.sink.add(_currentPage);
+  }
+
+  Stream get pageStream => _pageController.stream;
+
+  List<Future<Movie>> loadMovies(List<int> list_id){
+    return MovieApiClient.loadMovies(list_id);
   }
 
   void movieItemSelected(BuildContext context,Movie movie,String listName){
@@ -44,12 +55,24 @@ class HomePageBloc {
     }
   }
 
-  List<Future<Movie>> loadMovies(List<int> list_id){
-    return MovieApiClient.loadMovies(list_id);
+  void pageButtonPress(int page){
+    if (_isStart == true){
+      if (page == 5){
+        _isStart = false;
+      }
+      _currentPage = page;
+      _pageController.sink.add(_currentPage);
+    }
+    else{
+      if (page == 0){
+        _isStart = true;
+      }
+      _currentPage = page + 4;
+      _pageController.sink.add(_currentPage);
+    }
   }
 
-  Future<Map<String, dynamic>> loadRecommendedMovies(int userId) async {
-    Map<String, dynamic> res_data = await MovieApiClient.loadRecommendedMovies(userId);
-    return res_data;
+  void dispose(){
+    _pageController.close();
   }
 }

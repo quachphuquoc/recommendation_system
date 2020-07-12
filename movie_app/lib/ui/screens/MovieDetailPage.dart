@@ -46,12 +46,36 @@ class MovieDetailPage extends StatelessWidget{
                   children: <Widget>[
                     Align(
                       alignment: Alignment(-1, -1),
-                      child: this._movie.backdropPath != null ? Image.network(
-                        _base_url + "w500" + this._movie.backdropPath,
-                        width: _backdrop_width,
-                        height: _backdrop_width/1.78,
-                      ) :
-                      Image.asset("assets/images/backdrop_default.PNG"),
+                      child: Stack(
+                        alignment: Alignment(0,0),
+                        children: <Widget>[
+                          this._movie.backdropPath != null ? Image.network(
+                            _base_url + "w500" + this._movie.backdropPath,
+                            width: _backdrop_width,
+                            height: _backdrop_width/1.78,
+                          ) :
+                          Image.asset("assets/images/backdrop_default.PNG"),
+                          Container(
+                            padding: EdgeInsets.all(0),
+                            margin: EdgeInsets.all(0),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Color.fromRGBO(0, 0, 0, 0.75)
+                            ),
+                            child: IconButton(
+                              padding: EdgeInsets.all(0),
+                              iconSize: 60,
+                              icon: Icon(
+                                Icons.play_arrow,
+                                color: Color.fromRGBO(241, 184, 20, 0.75),
+                              ),
+                              onPressed: (){
+                                bloc.iconPlayButtonPress(context,_movie.id);
+                              },
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.end,
@@ -221,7 +245,7 @@ class MovieDetailPage extends StatelessWidget{
               children: List.generate(5, (index){
                 return IconButton(
                   onPressed: (){
-                    bloc.iconButtonPress(index+1);
+                    bloc.iconStarButtonPress(index+1);
                   },
                   color: Colors.yellow,
                   iconSize: 30,

@@ -40,7 +40,11 @@ class DrawerNavigationState extends State<DrawerNavigation>{
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xFF2d3450),
-        title: Center(child: Text(_bloc.options[_bloc.indexSelected]["title"])),
+        title: Center(
+          child: Text(_bloc.options[_bloc.indexSelected]["title"],
+            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.white),
+          ),
+        ),
         actions: _bloc.indexSelected==0? <Widget>[
           IconButton(
             icon: Icon(Icons.search),
