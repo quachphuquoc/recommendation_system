@@ -72,6 +72,7 @@ class MoreMoviesPageState extends State<MoreMoviesPage>{
             color: Color(0xFF2d3450),
             child: ListView.builder(
               cacheExtent: 0.0,
+              controller: _bloc.scrollController,
               itemCount: movies.length + 1,
               itemBuilder: (context, index){
                 if (index == movies.length){

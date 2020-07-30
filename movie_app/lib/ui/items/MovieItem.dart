@@ -29,10 +29,10 @@ class MovieItem extends StatelessWidget{
                   height: (_width_item - 10) * 1.5,
                   child: Hero(
                     tag: snapshot.data.id.toString()+"_"+this._listName,
-                    child: Image.network(
+                    child: snapshot.data.posterPath != null ? Image.network(
                       _base_url + snapshot.data.posterPath,
                       fit: BoxFit.fill,
-                    ),
+                    ) : Image.asset("assets/images/default_poster.jpg"),
                   ),
                 ),
                 Padding(

@@ -7,10 +7,12 @@ import 'package:movie_app/ui/screens/MovieDetailPage.dart';
 
 class MoreMoviesPageBloc {
   StreamController _pageController = new StreamController();
+  ScrollController _scrollController = new ScrollController();
   int _currentPage = 0;
   bool _isStart = true;
 
   bool get isStart => _isStart;
+  ScrollController get scrollController => _scrollController;
 
   MoreMoviesPageBloc(){
     _pageController.sink.add(_currentPage);
@@ -70,6 +72,7 @@ class MoreMoviesPageBloc {
       _currentPage = page + 4;
       _pageController.sink.add(_currentPage);
     }
+    _scrollController.animateTo(0, duration: Duration(seconds: 2), curve: Curves.ease);
   }
 
   void dispose(){
