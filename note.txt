@@ -1,0 +1,2 @@
+movie_app:
+	thay doi bien _localhost trong 2 file MovieApiClient va UserApiClient
