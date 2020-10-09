@@ -3,6 +3,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class MovieApiClient {
+  //Config _localhost base on ip of computer
+  static String _localhost = "http://10.45.167.81:8000";
   static String _baseURL = "https://api.themoviedb.org/3/movie/";
   static String _apiKey = "802b2c4b88ea1183e50e6b285a27696e";
 
@@ -34,7 +36,7 @@ class MovieApiClient {
 
   static Future<Map<String, dynamic>> loadRecommendedMovies(int userId) async {
     http.Response response = await http.post(
-      "http://10.0.2.2:8000/api/recommendations",
+        _localhost+"/api/recommendations",
       headers: <String, String>{
         'Content-Type': 'application/json'
       },
@@ -49,7 +51,7 @@ class MovieApiClient {
   }
 
   static Future<List<int>> searchMovies(String title) async {
-    String url = 'http://10.0.2.2:8000/api/search_movies?title=' + title.trim().replaceAll(' ', '%20');
+    String url = _localhost+"/api/search_movies?title=" + title.trim().replaceAll(' ', '%20');
     http.Response response = await http.get(url);
 
     List<dynamic> data = json.decode(response.body);
